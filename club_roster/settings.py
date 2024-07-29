@@ -145,8 +145,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # セキュリティ設定
 
-# HTTPSリダイレクトを強制する
-SECURE_SSL_REDIRECT = True
+# HTTPSリダイレクトを強制する。開発中のためFalseで設定
+SECURE_SSL_REDIRECT = False
 
 # HSTSヘッダーを設定する
 SECURE_HSTS_SECONDS = 31536000  # 1 year
