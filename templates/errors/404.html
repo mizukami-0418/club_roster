@@ -1,0 +1,14 @@
+{% extends "base_error.html" %}
+{% block title %}NOT FOUND{% endblock %}
+{% block content %}
+<div class="background-image d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center text-white">
+        <h1>PAGE NOT FOUND</h1>
+        <p>お探しのページは見つかりませんでした。</p>
+        <p>下記のリンクより移動をお願いします。</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">ホーム</a>
+        <a href="{% url 'player_list' %}" class="btn btn-primary">選手名鑑</a>
+        <a href="{% url 'team_list' %}" class="btn btn-primary">球団一覧</a>
+    </div>
+</div>
+{% endblock %}

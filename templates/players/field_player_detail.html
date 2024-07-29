@@ -1,0 +1,31 @@
+<!-- templates/players/field_player_detail.html -->
+
+{% extends 'base.html' %}
+{% block title %}FIELD PLAYER DETAIL{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center my-3">
+    <div class="card" style="width: 30rem;">
+        {% if field_player and field_player.image %}
+            <img src="{{ field_player.image.url }}" class="card-img-top" alt="{{ field_player.name }}">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ field_player.last_name }} {{field_player.first_name }}</h5>
+            <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum ad blanditiis soluta vero veritatis deleniti, harum quisquam, praesentium odit hic maxime? Impedit illum aliquam nisi similique reiciendis sapiente dolor ab. Lorem ipsum dolor, sit Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, magnam explicabo. Deserunt repellendus cumque non ducimus iure! Voluptates eos nihil ipsa fuga laudantium fugiat ipsam deserunt? Incidunt, ut unde. Rerum!</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">所属: <a href="{% url 'team_detail' field_player.team.pk %}">{{ field_player.team.name }}</a></li>
+            <li class="list-group-item">ポジション: {{ field_player.get_position_display }}</li>
+            <li class="list-group-item">誕生日: {{ field_player.birth_date }}</li>
+            <li class="list-group-item">身長: {{ field_player.height }} cm</li>
+            <li class="list-group-item">体重: {{ field_player.weight }} kg</li>
+            <li class="list-group-item">打率: {{ field_player.batting_average|floatformat:3 }}</li>
+            <li class="list-group-item">本塁打: {{ field_player.homeruns }}</li>
+        </ul>
+        <div class="card-body d-flex justify-content-center">
+            <a href="{% url 'field_player_edit' field_player.pk %}" class="btn btn-secondary me-2">編集</a>
+            <a href="{% url 'field_player_delete' field_player.pk %}" class="btn btn-danger me-2">引退</a>
+            <a href="{% url 'player_list' %}" class="btn btn-primary">選手名鑑へ</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

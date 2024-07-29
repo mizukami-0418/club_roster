@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}HOME{% endblock %}
+{% block content %}
+<div class="background-image d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center text-white">
+        <h2>プロ野球選手名鑑</h2>
+        <p>このサイトは架空のプロ野球選手名鑑です。</p>
+        <p>選手名やチーム名は全て架空です。ご注意ください</p>
+        <a href="{% url 'player_list' %}" class="btn btn-primary">選手名鑑へ</a>
+        <a href="{% url 'team_list' %}" class="btn btn-primary">球団一覧</a>
+    </div>
+</div>
+{% comment %} <a href="/nonexistent/">404エラーページを見る</a>
+<!-- 500エラーのルートを指定 -->
+<a href="{% url 'trigger500' %}">500エラーページを見る</a> {% endcomment %}
+{% endblock %}

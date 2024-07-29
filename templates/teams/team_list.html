@@ -1,0 +1,138 @@
+<!-- templates/teams/team_list.html -->
+
+{% extends 'base.html' %}
+{% block title %}TEAM LIST{% endblock %}
+{% block content %}
+<div class="viewport">
+    <h2 class="text-center bg-info my-3 py-2">プロ野球チーム一覧</h2>
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'team_new' %}" class="btn btn-primary my-3">新球団創設</a>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
+        <div class="col">
+            <div class="card text-center mx-auto">
+                <div class="card-header division">
+                <h3 class="division-title mb-0">NORTH DIVISION</h3>
+                </div>
+                <table class="table table-striped">
+                    <thead class="table-light">
+                    <tr>
+                        <th>チーム名</th>
+                        <th>野手所属数</th>
+                        <th>投手所属数</th>
+                        <th>ホームタウン</th>
+                        <th>設立</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for team in teams %}
+                        {% if team.division == "ND" %}
+                            <tr>
+                                <td><a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a></td>
+                                <td>{{ team.field_player_count }}</td>
+                                <td>{{ team.pitcher_count }}</td>
+                                <td>{{ team.city }}</td>
+                                <td>{{ team.founded }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center mx-auto">
+                <div class="card-header division">
+                <h3 class="division-title mb-0">EAST DIVISION</h3>
+                </div>
+                <table class="table table-striped">
+                    <thead class="table-light">
+                    <tr>
+                        <th>チーム名</th>
+                        <th>野手所属数</th>
+                        <th>投手所属数</th>
+                        <th>ホームタウン</th>
+                        <th>設立</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for team in teams %}
+                        {% if team.division == "ED" %}
+                            <tr>
+                                <td><a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a></td>
+                                <td>{{ team.field_player_count }}</td>
+                                <td>{{ team.pitcher_count }}</td>
+                                <td>{{ team.city }}</td>
+                                <td>{{ team.founded }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center mx-auto">
+                <div class="card-header division">
+                <h3 class="division-title mb-0">WEST DIVISION</h3>
+                </div>
+                <table class="table table-striped">
+                    <thead class="table-light">
+                    <tr>
+                        <th>チーム名</th>
+                        <th>野手所属数</th>
+                        <th>投手所属数</th>
+                        <th>ホームタウン</th>
+                        <th>設立</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for team in teams %}
+                        {% if team.division == "WD" %}
+                            <tr>
+                                <td><a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a></td>
+                                <td>{{ team.field_player_count }}</td>
+                                <td>{{ team.pitcher_count }}</td>
+                                <td>{{ team.city }}</td>
+                                <td>{{ team.founded }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center mx-auto">
+                <div class="card-header division">
+                <h3 class="division-title mb-0">SOUTH DIVISION</h3>
+                </div>
+                <table class="table table-striped">
+                    <thead class="table-light">
+                    <tr>
+                        <th>チーム名</th>
+                        <th>野手所属数</th>
+                        <th>投手所属数</th>
+                        <th>ホームタウン</th>
+                        <th>設立</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for team in teams %}
+                        {% if team.division == "SD" %}
+                            <tr>
+                                <td><a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a></td>
+                                <td>{{ team.field_player_count }}</td>
+                                <td>{{ team.pitcher_count }}</td>
+                                <td>{{ team.city }}</td>
+                                <td>{{ team.founded }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

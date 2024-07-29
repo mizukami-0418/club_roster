@@ -1,0 +1,28 @@
+<!-- templates/players/pitcher_form.html -->
+
+{% extends 'base.html' %}
+{% block title %}{% if pitcher.pk %}PITCHER EDIT{% else %}PITCHER CREATE{% endif %}{% endblock %}
+{% block content %}
+<div class="card mx-auto my-3" style="width: 30rem;">
+    <h4 class="card-header text-center bg-info">{% if form.instance.pk %}投手編集{% else %}投手新規登録{% endif %}</h4>
+    <div class="card-body">
+        <form method="post"  enctype="multipart/form-data">
+            {% if pitcher and pitcher.image %}
+                <img src="{{ pitcher.image.url }}" class="card-img-top" alt="{{ pitcher.name }}">
+            {% endif %}
+            {% csrf_token %}
+            {{ form.as_p }}
+            <hr>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success me-2">
+                    {% if form.instance.pk %}更新{% else %}登録{% endif %}
+                </button>
+                {% if pitcher.pk %}
+                    <a href="{% url 'pitcher_detail' pitcher.pk %}" class="btn btn-warning me-2">キャンセル</a>
+                {% endif %}
+                <a href="{% url 'player_list' %}" class="btn btn-primary">選手名鑑へ</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

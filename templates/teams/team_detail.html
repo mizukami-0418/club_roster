@@ -1,0 +1,94 @@
+<!-- templates/teams/team_detail.html -->
+
+{% extends 'base.html' %}
+{% block title %}TEAM DETAIL{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center">
+    {% if team and team.image %}
+        <img src="{{ team.image.url }}" class="card-img-top team-image" alt="{{ team.name }}">
+    {% endif %}
+</div>
+<div class="card text-center my-3 mx-auto">
+    <h2 class="card-header">{{ team.name }}</h2>
+    <div class="card-body">
+        <p>ホームタウン: {{ team.city }}</p>
+        <p>設立: {{ team.founded }}</p>
+        <div class="my-3">
+            <a href="{% url 'team_edit' team.pk %}" class="btn btn-secondary">編集</a>
+            <a href="{% url 'team_delete' team.pk %}" class="btn btn-danger">チーム解散</a>
+            <a href="{% url 'team_list' %}" class="btn btn-primary">球団一覧</a>
+        </div>
+    </div>
+</div>
+<div class="text-center my-3">
+    <h3>所属選手一覧</h3>
+    <h4 id="field_player" class="bg-info py-2">野手</h4>
+    <a href="#pitcher" class="btn btn-secondary mb-3">投手一覧はこちら</a>
+</div>
+<div id="sortableTable">
+    <!-- 検索入力フィールド -->
+    <input class="search form-control mb-3" placeholder="検索..."/>
+    <p>※項目をクリックすると並び替えが出来るよ！</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="name">名前</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="field_position">ポジション</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="batting_average">打率</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="homerun">本塁打</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="height">身長</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="weight">体重</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="birth_date">誕生日</button></th>
+        </tr>
+        </thead>
+        <tbody class="list">
+        {% for field_player in team.field_players.all %}
+        <tr>
+            <td class="name"><a href="{% url 'field_player_detail' field_player.pk %}">{{ field_player.last_name }}  {{ field_player.first_name }}</a></td>
+            <td class="field_position">{{ field_player.get_position_display }}</td>
+            <td class="batting_average">{{ field_player.batting_average|floatformat:3 }}</td>
+            <td class="homerun">{{ field_player.homeruns }}</td>
+            <td class="height">{{ field_player.height }}</td>
+            <td class="weight">{{ field_player.weight }}</td>
+            <td class="birth_date">{{ field_player.birth_date }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<hr>
+<div class="text-center my-3">
+    <h4 id="pitcher" class="bg-info py-2">投手</h4>
+    <a href="#field_player" class="btn btn-secondary mb-3">野手一覧はこちら</a>
+</div>
+<div id="sortableTable2">                                   
+    <!-- 検索入力フィールド -->
+    <input class="search form-control mb-3" placeholder="検索..."/>
+    <p>※項目をクリックすると並び替えが出来るよ！</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="name">名前</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="position">ポジション</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="earned_run_average">防御率</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="height">身長</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="weight">体重</button></th>
+            <th><button type="button" class="sort btn btn-outline-dark" data-sort="birth_date">誕生日</button></th>
+        </tr>
+        </thead>
+        <tbody class="list">
+        {% for pitcher in team.pitchers.all %}
+        <tr>
+            <td class="name"><a href="{% url 'pitcher_detail' pitcher.pk %}">{{ pitcher.last_name }}  {{ pitcher.first_name }}</a></td>
+            <td class="position">{{ pitcher.get_position_display }}</td>
+            <td class="earned_run_average">{{ pitcher.earned_run_average|floatformat:2 }}</td>
+            <td class="height">{{ pitcher.height }}</td>
+            <td class="weight">{{ pitcher.weight }}</td>
+            <td class="birth_date">{{ pitcher.birth_date }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

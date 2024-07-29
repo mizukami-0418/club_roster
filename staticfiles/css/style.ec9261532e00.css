@@ -1,0 +1,49 @@
+/* styles.css */
+
+body {
+    background-color: white;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    font-family: "Kosugi Maru", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}  
+
+main {
+    background-color: azure;
+}
+
+.background-image {
+    background-image: url("../image/bg_baseball_ground.b1d5bf879bc3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%; /* 画面全体の高さを確保 */
+    width: 100%; /* 画面全体の幅を確保 */
+}
+
+.team-image {
+    max-width: 600px;
+    max-height: 600px;
+}
+
+.viewport {
+    height: 90vh;
+}
+
+.division {
+    background-color: #8effff;
+}
+
+h3.division-title {
+    color: #0f2350;
+}
+
+.sort.asc::after {
+    content: " \25B2"; /* 上向き矢印 */
+}
+
+.sort.desc::after {
+    content: " \25BC"; /* 下向き矢印 */
+}

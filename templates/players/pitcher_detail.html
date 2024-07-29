@@ -1,0 +1,31 @@
+<!-- templates/players/pitcher_detail.html -->
+
+{% extends 'base.html' %}
+{% block title %}PITCHER DETAIL{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center my-3">
+    <div class="card" style="width: 30rem;">
+        {% if pitcher and pitcher.image %}
+            <img src="{{ pitcher.image.url }}" class="card-img-top" alt="{{ pitcher.name }}">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ pitcher.last_name }} {{ pitcher.first_name }}</h5>
+            <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum ad blanditiis soluta vero veritatis deleniti, harum quisquam, praesentium odit hic maxime? Impedit illum aliquam nisi similique reiciendis sapiente dolor ab. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure, quibusdam perferendis mollitia quo ipsam porro deleniti, quas voluptas ratione quia omnis dignissimos asperiores autem voluptatibus maiores libero sed quidem quam?</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">所属: <a href="{% url 'team_detail' pitcher.team.pk %}">{{ pitcher.team.name }}</a></li>
+            <li class="list-group-item">ポジション: {{ pitcher.get_position_display }}</li>
+            <li class="list-group-item">誕生日: {{ pitcher.birth_date }}</li>
+            <li class="list-group-item">身長: {{ pitcher.height }} cm</li>
+            <li class="list-group-item">体重: {{ pitcher.weight }} kg</li>
+            <li class="list-group-item">防御率: {{ pitcher.earned_run_average|floatformat:2 }}</li>
+        </ul>
+        <div class="card-body d-flex justify-content-center">
+            <a href="{% url 'pitcher_edit' pitcher.pk %}" class="btn btn-secondary me-2">編集</a>
+            <a href="{% url 'pitcher_delete' pitcher.pk %}" class="btn btn-danger me-2">引退</a>
+            <a href="{% url 'player_list' %}" class="btn btn-primary">選手名鑑へ</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

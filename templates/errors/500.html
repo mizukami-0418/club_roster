@@ -1,0 +1,12 @@
+{% extends "base_error.html" %}
+{% block title %}NOT FOUND{% endblock %}
+{% block content %}
+<div class="background-image d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center text-white">
+        <h1>Internal Server Error</h1>
+        <p>サーバーエラーが発生しました。しばらくしてから再度お試しください。</p>
+        <p>下記のリンクより移動をお願いします。</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">ホームに戻る</a>
+    </div>
+</div>
+{% endblock %}

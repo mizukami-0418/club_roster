@@ -1,0 +1,31 @@
+<!-- templates/teams/team_form.html -->
+
+{% extends 'base.html' %}
+{% block title %}{% if team.pk %}TEAM EDIT{% else%}TEAM CREATE{% endif %}{% endblock %}
+{% block content %}
+<div class="viewport d-flex align-items-center">
+    <div class="card mx-auto my-3" style="width: 30rem;">
+        <h4 class="card-header text-center bg-info">{% if form.instance.pk %}チーム編集{% else %}球団新設{% endif %}</h4>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% if team and team.image %}
+                    <img src="{{ team.image.url }}" class="card-img-top" alt="{{ team.name }}">
+                {% endif %}
+                <hr>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success me-2">
+                        {% if form.instance.pk %}更新{% else %}設立{% endif %}
+                    </button>
+                    {% if team.pk %}
+                        <a href="{% url 'team_detail' team.pk %}" class="btn btn-warning me-2">キャンセル</a>
+                    {% endif %}
+                    <a href="{% url 'team_list' %}" class="btn btn-primary">球団一覧へ</a>
+                </div>  
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

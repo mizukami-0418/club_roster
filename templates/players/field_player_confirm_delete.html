@@ -1,0 +1,25 @@
+<!-- templates/players/field_player_confirm_delet.html -->
+
+{% extends 'base.html' %}
+{% block title %}FIELD PLAYER DELETE{% endblock %}
+{% block content %}
+<div class="viewport d-flex align-items-center">
+    <div class="card text-center mx-auto" style="width: 30rem;">
+        <h4 class="card-header">選手引退</h4>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {% if field_player and field_player.image %}
+                    <img src="{{ field_player.image.url }}" class="card-img-top" alt="{{ field_player.name }}">
+                {% endif %}
+                <hr>
+                <h5 class="card-title">"{{ field_player.last_name }} {{ field_player.first_name }}"選手が引退してもよろしいですか ?</h5>
+                <hr>
+                <button type="submit" class="btn btn-danger">引退する</button>
+                <a href="{% url 'field_player_detail' field_player.pk %}" class="btn btn-warning">キャンセル</a>
+                <a href="{% url 'player_list' %}" class="btn btn-primary">選手名鑑へ</a>
+            </form>     
+        </div>
+    </div>
+</div>
+{% endblock %}
